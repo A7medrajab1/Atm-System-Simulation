@@ -2,12 +2,11 @@ import threading
 import tkinter as tk
 from tkinter import messagebox, simpledialog
 
-# Shared account balance (simulated as shared resource)
+
 account_balance = 1000
 users = {}
 balance_lock = threading.Lock()
 
-# ATM Functionality
 def atm_task(task, amount, log_box, user):
     global account_balance
 
@@ -87,22 +86,17 @@ def create_gui():
         users[user_name] = initial_balance
         messagebox.showinfo("Success", f"User {user_name} created with balance {initial_balance}.")
 
-    # Root window
     root = tk.Tk()
     root.title("ATM Simulator")
 
-    # Input for number of threads
     tk.Label(root, text="Enter number of threads (ATMs):").pack(pady=5)
     entry_threads = tk.Entry(root)
     entry_threads.pack(pady=5)
 
-    # Create user button
     tk.Button(root, text="Create User", command=create_user).pack(pady=10)
 
-    # Start simulation button
     tk.Button(root, text="Start Simulation", command=start_simulation).pack(pady=10)
 
-    # Run the GUI event loop
     root.mainloop()
 
 if __name__ == "__main__":
